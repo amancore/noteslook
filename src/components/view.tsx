@@ -2,7 +2,6 @@ import React from 'react'
 import {
 	Card,
 	CardContent,
-	CardDescription,
 	CardFooter,
 	CardHeader,
 	CardTitle,
@@ -26,7 +25,9 @@ export default function NoteView({note,onEdit}: NoteViewProps) {
 			</CardHeader>
 			<CardContent>
 				<ScrollArea className="h-[calc(100vh-350px)]">
-					<p className="text-sm whitespace-pre-wrap">{note.content}</p>
+					<p className="text whitespace-pre-wrap">
+						{note.content}
+					</p>
 				</ScrollArea>
 			</CardContent>
 			<CardFooter className="flex justify-end">

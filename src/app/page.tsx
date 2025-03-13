@@ -1,6 +1,5 @@
 'use client'
 import SideBar from "@/components/sidebar";
-import { Button } from "@/components/ui/button";
 import Header from "@/components/header";
 import { useState,useEffect } from "react";
 import { Note } from "@/lib/types";
@@ -72,7 +71,7 @@ export default function Home() {
 		<div className="flex flex-col min-h-screen">
 			<Header onNewNote={createNewNote} />
 			<main className="container mx-auto p-4 grid grid-col-2 md:grid-cols-3 gap-6 flex-1">
-				<div className="md:col-span-0.5">
+				<div className="md:col-span-1">
 					<SideBar
 						notes={notes}
 						onSelectNote={selectNote}
