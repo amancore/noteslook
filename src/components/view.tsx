@@ -20,13 +20,13 @@ export default function NoteView({note,onEdit}: NoteViewProps) {
 		<Card>
 			<CardHeader>
 				<CardTitle>{note.title}</CardTitle>
-				<p className="text-sum text-muted-foreground">
+				<p className="text-sm text-muted-foreground">
 					{formateDate(note.createdAt)}
 				</p>
 			</CardHeader>
 			<CardContent>
-				<ScrollArea className="h-[calc(100vh-250px)]">
-					<div>{note.content}</div>
+				<ScrollArea className="h-[calc(100vh-350px)]">
+					<p className="text-sm whitespace-pre-wrap">{note.content}</p>
 				</ScrollArea>
 			</CardContent>
 			<CardFooter className="flex justify-end">
