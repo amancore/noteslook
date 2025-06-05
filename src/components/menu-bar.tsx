@@ -13,7 +13,7 @@ import {
 	faAlignJustify,
 } from "@fortawesome/free-solid-svg-icons";
 
-export default function MenuBar({ editor }) {
+export default function MenuBar({ editor }: { editor: any }) {
 	if (!editor) {
 		return null;
 	}
