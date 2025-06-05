@@ -11,7 +11,6 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import {Button} from "./ui/button"
 import { Save, X } from "lucide-react";
-import { on } from "events";
 
 export default function NoteEditor({ note, onSave,onCancel }: NoteEditorProps) {
 	const [title, setTitle] = useState(note.title);
