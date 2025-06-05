@@ -6,12 +6,11 @@ interface NoteEditorProps {
 	onCancel: () => void;
 }
 import { useState } from "react";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardContent, CardFooter, CardHeader } from "./ui/card";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import {Button} from "./ui/button"
 import { Save, X } from "lucide-react";
-
 export default function NoteEditor({ note, onSave,onCancel }: NoteEditorProps) {
 	const [title, setTitle] = useState(note.title);
 	const [content, setContent] = useState(note.content);
@@ -38,8 +37,8 @@ export default function NoteEditor({ note, onSave,onCancel }: NoteEditorProps) {
 					value={content}
 					onChange={(e) => setContent(e.target.value)}
 					placeholder="Write your note here..."
-					className="h-[calc(100vh-250px)] resize-none border-none focus-visible:ring-0 p-0"
-				/>
+					className="h-[calc(100vh-350px)] resize-none border-none focus-visible:ring-0 p-0"
+					/>
 			</CardContent>
 			<CardFooter className="flex justify-end space-x-2">
 				<Button variant="outline" onClick={onCancel}>

@@ -38,7 +38,7 @@ export default function SideBar({
 						onButtonClick={createNewNote}
 					/>
 				) : (
-					<ScrollArea className="h-[calc(100vh-250px)]">
+					<ScrollArea className="h-[calc(100vh-200px)]">
 						<div>
 							{notes.map((note) => (
 								<div
@@ -53,10 +53,11 @@ export default function SideBar({
 												{note.title.substring(0, 30)}
 												{note.title.length > 30 ? "..." : ""}
 											</h3>
-											<p className="text-sm text-muted-foreground">
-												{note.content.substring(0, 40)}
-												{note.content.length > 40 ? "..." : ""}
+											<p className="text-sm text-muted-foreground whitespace-pre-wrap">
+												{note.content.substring(0, 60)}
+												{note.content.length > 60 ? "..." : ""}
 											</p>
+
 											<p className="text-sm text-muted-foreground">
 												{formateDate(note.createdAt)}
 											</p>

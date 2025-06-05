@@ -1,5 +1,7 @@
 import { Note } from "./types";
-const STORAGE_KEY = "notes"
+
+const STORAGE_KEY = "notes";
+
 export function loadNotes(): Note[] {
 	if (typeof window === "undefined") return [];
 
@@ -14,14 +16,19 @@ export function loadNotes(): Note[] {
 	}
 	return [];
 }
-export function saveNotes(notes: Note[]):void {
-	if(typeof window === "undefined") return;
+
+export function saveNotes(notes: Note[]): void {
+	if (typeof window === "undefined") return;
 	localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
-}	
-export function formateDate(timestamp:number):string{
-	return new Date(timestamp).toLocaleDateString("en-US",{
-		year:"numeric",
-		month:"short",
-		day:"numeric"
-	})
+}
+
+export function formateDate(timestamp: number): string {
+	return new Date(timestamp).toLocaleString("en-US", {
+		year: "numeric",
+		month: "short",
+		day: "numeric",
+		hour: "numeric",
+		minute: "2-digit",
+		hour12: true, 
+	});
 }

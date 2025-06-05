@@ -1,6 +1,5 @@
 'use client'
 import SideBar from "@/components/sidebar";
-import { Button } from "@/components/ui/button";
 import Header from "@/components/header";
 import { useState,useEffect } from "react";
 import { Note } from "@/lib/types";
