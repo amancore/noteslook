@@ -24,7 +24,7 @@ export default function NoteView({note,onEdit}: NoteViewProps) {
 				</p>
 			</CardHeader>
 			<CardContent>
-				<ScrollArea className="h-[calc(100vh-350px)]">
+				<ScrollArea className="h-[calc(78vh-78px)]">
 					<p className="text whitespace-pre-wrap">
 						{note.content}
 					</p>
