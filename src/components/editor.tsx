@@ -1,10 +1,5 @@
 "use client";
 import { Note } from "@/lib/types";
-interface NoteEditorProps {
-	note: Note;
-	onSave: (node: Note) => void;
-	onCancel: () => void;
-}
 import { useState } from "react";
 import { Card, CardContent, CardFooter, CardHeader } from "./ui/card";
 import { Input } from "./ui/input";
@@ -12,6 +7,12 @@ import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
 import { Save, X } from "lucide-react";
 import { formateDate } from "@/lib/storage";
+interface NoteEditorProps {
+	note: Note;
+	onSave: (note: Note) => void;
+	onCancel: () => void;
+}
+
 export default function NoteEditor({
 	note,
 	onSave,
@@ -19,6 +20,7 @@ export default function NoteEditor({
 }: NoteEditorProps) {
 	const [title, setTitle] = useState(note.title);
 	const [content, setContent] = useState(note.content);
+
 	const onHandleSave = () => {
 		onSave({
 			...note,
@@ -26,35 +28,38 @@ export default function NoteEditor({
 			content,
 		});
 	};
+
 	return (
-		<Card>
+		<Card className="flex flex-col overflow-y-hidden h-[calc(99vh-99px)]">
 			<CardHeader>
 				<Input
 					type="text"
 					value={title}
 					onChange={(e) => setTitle(e.target.value)}
 					placeholder="Note title"
-					className="text-xl font-bold border-none px-2 focus-visible:ring-0"
-				/>
+					className="!text-xl p-0 m-0 h-8 w-full border-none focus-visible:ring-0 font-bold
+				"/>
 				<p className="text-sm text-muted-foreground">
 					{formateDate(note.createdAt)}
 				</p>
 			</CardHeader>
-			<CardContent>
+
+			<CardContent className="flex-1 min-h-0 overflow-hidden">
 				<Textarea
 					value={content}
 					onChange={(e) => setContent(e.target.value)}
 					placeholder="Write your note here..."
-					className="h-[calc(76vh-80px)] resize-none border-none focus-visible:ring-0 p-0"
+					className="h-full resize-none !border-none focus-visible:ring-0 p-0"
+					style={{ minHeight: 0 }}
 				/>
 			</CardContent>
-			<CardFooter className="flex justify-end">
+			<CardFooter className="flex justify-end gap-2 overflow-hidden">
 				<Button variant="outline" onClick={onCancel}>
-					<X className="h-4 w-4 mr-2" />
+					<X className="h-4 w-4" />
 					Cancel
 				</Button>
-				<Button onClick={onHandleSave}>
-					<Save className="h-4 w-4 mr-2" />
+				<Button variant="outline" onClick={onHandleSave}>
+					<Save className="h-4 w-4" />
 					Save
 				</Button>
 			</CardFooter>

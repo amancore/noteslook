@@ -1,10 +1,5 @@
 import React from "react";
-import {
-	Card,
-	CardContent,
-	CardHeader,
-	CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import EmptyState from "./empty-state";
 import { Note } from "@/lib/types";
 import { Button } from "./ui/button";
@@ -26,11 +21,11 @@ export default function SideBar({
 	activeNoteId,
 }: SideBarProps) {
 	return (
-		<Card className="h-full">
+		<Card className="flex flex-col border rounded-lg bg-white shadow-md h-full">
 			<CardHeader>
 				<CardTitle>My Notes</CardTitle>
 			</CardHeader>
-			<CardContent>
+			<CardContent className="flex-1 min-h-0">
 				{notes.length === 0 ? (
 					<EmptyState
 						message="No notes yet"
@@ -38,26 +33,27 @@ export default function SideBar({
 						onButtonClick={createNewNote}
 					/>
 				) : (
-					<ScrollArea className="h-[calc(100vh-200px)]">
+					<ScrollArea className="max-h-[calc(85vh-85px)] h-full overflow-y-auto ">
 						<div>
 							{notes.map((note) => (
 								<div
 									key={note.id}
 									onClick={() => onSelectNote(note)}
-									className={`p-3 rounded-md cursor-pointer hover:bg-accent transition-colors ${
-										activeNoteId === note.id ? "bg-accent" : ""
+									className={`p-2 rounded-md cursor-pointer hover:bg-accent transition-colors ${
+										activeNoteId === note.id
+											? "border border-gray-400 not-even:bg-gray-100 text-black"
+											: "border border-gray-400"
 									}`}>
-									<div className="flex justify-between items-center">
+									<div className="flex justify-between items-center px-2 py-1 rounded-md">
 										<div>
 											<h3 className="font-medium">
-												{note.title.substring(0, 30)}
-												{note.title.length > 30 ? "..." : ""}
+												{note.title.substring(0, 40)}
+												{note.title.length > 40 ? "..." : ""}
 											</h3>
 											<p className="text-sm text-muted-foreground whitespace-pre-wrap">
-												{note.content.substring(0, 60)}
-												{note.content.length > 60 ? "..." : ""}
+												{note.content.substring(0, 40)}
+												{note.content.length > 40 ? "..." : ""}
 											</p>
-
 											<p className="text-sm text-muted-foreground">
 												{formateDate(note.createdAt)}
 											</p>
