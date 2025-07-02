@@ -30,7 +30,7 @@ export default function NoteEditor({
 	};
 
 	return (
-		<Card className="flex flex-col overflow-y-hidden h-[calc(99vh-99px)]">
+		<Card className="flex flex-col overflow-y-hidden h-[calc(99vh-99px)] bg-white dark:bg-black dark:text-white">
 			<CardHeader>
 				<Input
 					type="text"
@@ -38,7 +38,8 @@ export default function NoteEditor({
 					onChange={(e) => setTitle(e.target.value)}
 					placeholder="Note title"
 					className="!text-xl p-0 m-0 h-8 w-full border-none focus-visible:ring-0 font-bold
-				"/>
+				"
+				/>
 				<p className="text-sm text-muted-foreground">
 					{formateDate(note.createdAt)}
 				</p>

@@ -18,7 +18,7 @@ interface NoteViewProps {
 
 export default function NoteView({ note, onEdit }: NoteViewProps) {
 	return (
-		<Card className="flex flex-col h-[calc(99vh-99px)]">
+		<Card className="flex flex-col h-[calc(99vh-99px)] bg-white dark:bg-black dark:text-white">
 			<CardHeader>
 				<CardTitle>{note.title}</CardTitle>
 				<p className="text-sm text-muted-foreground">

@@ -1,4 +1,5 @@
 import { Inter, Roboto_Mono } from "next/font/google";
+import { ThemeProvider } from "@/components/ThemeContext";
 import "./globals.css";
 import { Metadata } from "next";
 
@@ -23,10 +24,12 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html
-			lang="en"
-			className={`${inter.variable} ${robotoMono.variable} antialiased`}>
-			<body suppressHydrationWarning={true}>{children}</body>
-		</html>
+		<ThemeProvider>
+			<html
+				lang="en"
+				className={`${inter.variable} ${robotoMono.variable} antialiased`}>
+				<body suppressHydrationWarning={true}>{children}</body>
+			</html>
+		</ThemeProvider>
 	);
 }

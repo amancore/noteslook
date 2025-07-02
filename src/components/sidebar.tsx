@@ -21,7 +21,7 @@ export default function SideBar({
 	activeNoteId,
 }: SideBarProps) {
 	return (
-		<Card className="flex flex-col border rounded-lg bg-white shadow-md h-full">
+		<Card className="flex flex-col border rounded-lg bg-white dark:bg-black dark:text-white shadow-md h-full">
 			<CardHeader>
 				<CardTitle>My Notes</CardTitle>
 			</CardHeader>
@@ -34,25 +34,25 @@ export default function SideBar({
 					/>
 				) : (
 					<ScrollArea className="max-h-[calc(85vh-85px)] h-full overflow-y-auto ">
-						<div>
+						<div className="space-y-2">
 							{notes.map((note) => (
 								<div
 									key={note.id}
 									onClick={() => onSelectNote(note)}
-									className={`p-2 rounded-md cursor-pointer hover:bg-accent transition-colors ${
+									className={`p-3 rounded-md cursor-pointer hover:bg-accent transition-colors ${
 										activeNoteId === note.id
-											? "border border-gray-400 not-even:bg-gray-100 text-black"
+											? "border border-gray-400 bg-gray-900 text-black dark:black dark:text-white"
 											: "border border-gray-400"
 									}`}>
-									<div className="flex justify-between items-center px-2 py-1 rounded-md">
+									<div className="flex justify-between items-center px-1 py-1 rounded-md">
 										<div>
 											<h3 className="font-medium">
-												{note.title.substring(0, 40)}
-												{note.title.length > 40 ? "..." : ""}
+												{note.title.substring(0, 60)}
+												{note.title.length > 60 ? "..." : ""}
 											</h3>
 											<p className="text-sm text-muted-foreground whitespace-pre-wrap">
-												{note.content.substring(0, 40)}
-												{note.content.length > 40 ? "..." : ""}
+												{note.content.substring(0, 60)}
+												{note.content.length > 60 ? "..." : ""}
 											</p>
 											<p className="text-sm text-muted-foreground">
 												{formateDate(note.createdAt)}

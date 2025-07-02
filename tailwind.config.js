@@ -1,8 +1,6 @@
 module.exports = {
+	darkMode: "class",
 	content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
-	// ...other config
-};
-module.exports = {
 	theme: {
 		extend: {
 			colors: {
@@ -10,6 +8,8 @@ module.exports = {
 				foreground: "var(--foreground)",
 				accent: "var(--accent)",
 				"accent-foreground": "var(--accent-foreground)",
+				card: "var(--card)",
+				"muted-foreground": "var(--muted-foreground)",
 			},
 			fontFamily: {
 				sans: ["Inter", "sans-serif"],
