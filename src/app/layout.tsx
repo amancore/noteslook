@@ -1,11 +1,11 @@
-import { Inter, Roboto_Mono } from "next/font/google";
+import { Poppins, Roboto_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeContext";
 import "./globals.css";
 import { Metadata } from "next";
-
-const inter = Inter({
-	variable: "--font-inter",
+const poppins = Poppins({
+	variable: "--font-poppins",
 	subsets: ["latin"],
+	weight: ["400", "500", "600", "700"],
 });
 
 const robotoMono = Roboto_Mono({
@@ -27,7 +27,7 @@ export default function RootLayout({
 		<ThemeProvider>
 			<html
 				lang="en"
-				className={`${inter.variable} ${robotoMono.variable} antialiased`}>
+				className={`${poppins.variable} ${robotoMono.variable} antialiased`}>
 				<body suppressHydrationWarning={true}>{children}</body>
 			</html>
 		</ThemeProvider>

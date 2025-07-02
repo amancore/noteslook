@@ -20,6 +20,7 @@ export default function SideBar({
 	onDeleteNote,
 	activeNoteId,
 }: SideBarProps) {
+	
 	return (
 		<Card className="flex flex-col border rounded-lg bg-white dark:bg-black dark:text-white shadow-md h-full">
 			<CardHeader>
@@ -46,16 +47,16 @@ export default function SideBar({
 									}`}>
 									<div className="flex justify-between items-center px-1 py-1 rounded-md">
 										<div>
-											<h3 className="font-medium">
-												{note.title.substring(0, 60)}
-												{note.title.length > 60 ? "..." : ""}
+											<h3 className="font-bold text-l">
+												{note.title.substring(0, 20)}
+												{note.title.length > 20 ? "..." : ""}
 											</h3>
-											<p className="text-sm text-muted-foreground whitespace-pre-wrap">
-												{note.content.substring(0, 60)}
-												{note.content.length > 60 ? "..." : ""}
+											<p className="text-[0.90rem] mb-1 text-muted-foreground whitespace-pre-wrap">
+												{note.content.substring(0, 20)}
+												{note.content.length > 20 ? "..." : ""}
 											</p>
-											<p className="text-sm text-muted-foreground">
-												{formateDate(note.createdAt)}
+											<p className="text-[0.75rem] text-muted-foreground">
+												{formateDate(note.updatedAt)}
 											</p>
 										</div>
 										<Button

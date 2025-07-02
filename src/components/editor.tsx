@@ -37,12 +37,18 @@ export default function NoteEditor({
 					value={title}
 					onChange={(e) => setTitle(e.target.value)}
 					placeholder="Note title"
-					className="!text-xl p-0 m-0 h-8 w-full border-none focus-visible:ring-0 font-bold
+					className="!text-[1rem] p-0 m-0 h-5 w-full border-none focus-visible:ring-0 font-bold
 				"
 				/>
 				<p className="text-sm text-muted-foreground">
-					{formateDate(note.createdAt)}
+					Created: {formateDate(note.createdAt)}
 				</p>
+				{/* Optionally, show updated if different */}
+				{note.updatedAt && note.updatedAt !== note.createdAt && (
+					<p className="text-xs text-muted-foreground">
+						Updated: {formateDate(note.updatedAt)}
+					</p>
+				)}
 			</CardHeader>
 
 			<CardContent className="flex-1 min-h-0 overflow-hidden">

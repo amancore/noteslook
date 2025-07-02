@@ -11,9 +11,15 @@ export default function Home() {
 	const [notes, setNotes] = useState<Note[]>([]);
 	const [activeNote,setActiveNote] = useState<Note | null>(null);
 	const [isEditing, setIsEditing] = useState(true);
-
+	const sortedNotes = [...notes].sort((a, b) => b.updatedAt - a.updatedAt);
 	useEffect(() => {
-		setNotes(loadNotes());
+		const loadedNotes = loadNotes();
+		const sorted = [...loadedNotes].sort((a, b) => b.updatedAt - a.updatedAt);
+		setNotes(sorted);
+		if (sorted.length > 0) {
+			setActiveNote(sorted[0]);
+			setIsEditing(false);
+		}
 	}, []);
 
 	useEffect(() => {
@@ -25,8 +31,10 @@ export default function Home() {
 			id:Date.now().toString(),
 			title: 'New Note',
 			content : "",
-			createdAt: Date.now()
+			createdAt: Date.now(),
+			updatedAt: Date.now()
 		}
+		
 		setNotes([newNote, ...notes]);
 		setActiveNote(newNote);
 		setIsEditing(true);
@@ -38,11 +46,18 @@ export default function Home() {
 	const cancelEdit = () => {
 		setIsEditing(false);
 	}
-	const saveNote = (updatedNote : Note) => {
-		setNotes(notes.map(note => (note.id === updatedNote.id) ? updatedNote : note));
-		setActiveNote(updatedNote);
+	const saveNote = (updatedNote: Note) => {
+		setNotes(
+			notes.map((note) =>
+				note.id === updatedNote.id
+					? { ...updatedNote, updatedAt: Date.now() }
+					: note
+			)
+		);
+		setActiveNote({ ...updatedNote, updatedAt: Date.now() });
 		setIsEditing(false);
-	}
+	};
+	
 	const deleteNote = (id :string ) => {
 		setNotes(notes.filter((note) => note.id !== id));
 		if(activeNote && activeNote.id === id){
@@ -73,7 +88,7 @@ export default function Home() {
 			<main className="container mx-auto py-4 grid grid-col-2 md:grid-cols-3 gap-6 flex-1">
 				<div className="md:col-span-1">
 					<SideBar
-						notes={notes}
+						notes={sortedNotes}
 						onSelectNote={selectNote}
 						createNewNote={createNewNote}
 						onDeleteNote={deleteNote}

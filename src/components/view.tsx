@@ -22,8 +22,13 @@ export default function NoteView({ note, onEdit }: NoteViewProps) {
 			<CardHeader>
 				<CardTitle>{note.title}</CardTitle>
 				<p className="text-sm text-muted-foreground">
-					{formateDate(note.createdAt)}
+					Created: {formateDate(note.createdAt)}
 				</p>
+				{note.updatedAt && note.updatedAt !== note.createdAt && (
+					<p className="text-xs text-muted-foreground">
+						Updated: {formateDate(note.updatedAt)}
+					</p>
+				)}
 			</CardHeader>
 			<CardContent className="flex-1 min-h-0">
 				<ScrollArea className="h-full">
