@@ -6,6 +6,7 @@ import { Button } from "./ui/button";
 import { Trash2 } from "lucide-react";
 import { formateDate } from "@/lib/storage";
 import { ScrollArea } from "./ui/scroll-area";
+
 interface SideBarProps {
 	notes: Note[];
 	onSelectNote: (note: Note) => void;
@@ -13,6 +14,7 @@ interface SideBarProps {
 	onDeleteNote: (id: string) => void;
 	activeNoteId?: string;
 }
+
 export default function SideBar({
 	notes,
 	onSelectNote,
@@ -20,7 +22,6 @@ export default function SideBar({
 	onDeleteNote,
 	activeNoteId,
 }: SideBarProps) {
-	
 	return (
 		<Card className="flex flex-col border rounded-lg bg-white dark:bg-black dark:text-white shadow-md h-full">
 			<CardHeader>
@@ -34,7 +35,7 @@ export default function SideBar({
 						onButtonClick={createNewNote}
 					/>
 				) : (
-					<ScrollArea className="max-h-[calc(85vh-85px)] h-full overflow-y-auto ">
+					<ScrollArea className="max-h-[calc(85vh-85px)] h-full overflow-y-auto">
 						<div className="space-y-2">
 							{notes.map((note) => (
 								<div
@@ -42,7 +43,7 @@ export default function SideBar({
 									onClick={() => onSelectNote(note)}
 									className={`p-3 rounded-md cursor-pointer hover:bg-accent transition-colors ${
 										activeNoteId === note.id
-											? "border border-gray-400 bg-gray-900 text-black dark:black dark:text-white"
+											? "border border-gray-400 bg-gray-900 dark:bg-zinc-800 text-white"
 											: "border border-gray-400"
 									}`}>
 									<div className="flex justify-between items-center px-1 py-1 rounded-md">
@@ -60,6 +61,7 @@ export default function SideBar({
 											</p>
 										</div>
 										<Button
+											type="button"
 											variant="ghost"
 											size="icon"
 											className="h-8 w-8 text-muted-foreground hover:text-destructive cursor-pointer"

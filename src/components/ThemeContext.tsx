@@ -7,13 +7,15 @@ import React, {
 	useEffect,
 } from "react";
 
-type Theme = "light" | "dark";
-type ThemeContextType = {
+export type Theme = "light" | "dark";
+export type ThemeContextType = {
 	theme: Theme;
 	toggleTheme: () => void;
 };
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+export const ThemeContext = createContext<ThemeContextType | undefined>(
+	undefined
+);
 
 export function useTheme() {
 	const ctx = useContext(ThemeContext);
@@ -21,12 +23,18 @@ export function useTheme() {
 	return ctx;
 }
 
+function getInitialTheme(): Theme {
+	if (typeof window !== "undefined") {
+		const stored = localStorage.getItem("theme");
+		if (stored === "light" || stored === "dark") return stored as Theme;
+		if (window.matchMedia("(prefers-color-scheme: dark)").matches)
+			return "dark";
+	}
+	return "light";
+}
+
 export function ThemeProvider({ children }: { children: ReactNode }) {
-	const [theme, setTheme] = useState<Theme>(
-		typeof window !== "undefined"
-			? (localStorage.getItem("theme") as Theme) || "light"
-			: "light"
-	);
+	const [theme, setTheme] = useState<Theme>(getInitialTheme);
 
 	useEffect(() => {
 		document.documentElement.classList.toggle("dark", theme === "dark");

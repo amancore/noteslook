@@ -18,12 +18,18 @@ export default function Header({ onNewNote }: HeaderProps) {
 			<div className="container mx-auto flex justify-between items-center">
 				<h1 className="text-2xl font-bold">Notes Look</h1>
 				<div className="flex gap-3">
-					<Button variant="outline" onClick={onNewNote} size="lg" className="cursor-pointer">
-						<Plus className="h-4 w-4"/>
+					<Button
+						type="button"
+						variant="outline"
+						onClick={onNewNote}
+						size="lg"
+						className="cursor-pointer">
+						<Plus className="h-4 w-4" />
 						New Note
 					</Button>
 					{mounted && (
 						<Button
+							type="button"
 							onClick={toggleTheme}
 							variant="outline"
 							size="icon"

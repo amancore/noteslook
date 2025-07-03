@@ -30,6 +30,7 @@ export default function NoteView({ note, onEdit }: NoteViewProps) {
 					</p>
 				)}
 			</CardHeader>
+				<div className="border-1 border-white"></div>
 			<CardContent className="flex-1 min-h-0">
 				<ScrollArea className="h-full">
 					<p className="text whitespace-pre-wrap">{note.content}</p>
