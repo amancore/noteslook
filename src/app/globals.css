@@ -1,4 +1,7 @@
 @import "tailwindcss";
+html {
+	scroll-behavior: smooth;
+}
 :root {
   --background: #fff;
   --foreground: #000;
@@ -33,4 +36,8 @@ body {
 .dark {
 	--background: #000;
 	--foreground: #fafafa;
+}
+
+[contenteditable]::-webkit-scrollbar {
+	display: none;
 }

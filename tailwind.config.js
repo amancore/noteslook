@@ -1,6 +1,12 @@
 module.exports = {
 	darkMode: "class",
 	content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
+	plugins: [
+    require('tailwind-scrollbar'),
+  ],
+  variants: {
+    scrollbar: ['rounded', 'dark'],
+  },
 	theme: {
 		extend: {
 			colors: {

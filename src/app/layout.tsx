@@ -27,7 +27,7 @@ export default function RootLayout({
 		<ThemeProvider>
 			<html
 				lang="en"
-				className={`${poppins.variable} ${robotoMono.variable} antialiased`}>
+				className={`${poppins.variable} ${robotoMono.variable} antialiased scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 dark:scrollbar-thumb-gray-700 dark:scrollbar-track-gray-900` }>
 				<body suppressHydrationWarning={true}>{children}</body>
 			</html>
 		</ThemeProvider>
