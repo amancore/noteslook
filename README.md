@@ -22,7 +22,7 @@ A simple note-taking application built with **React** and **TypeScript**. This a
 
 1. **Clone the repository**
    ```sh
-   git clone https://github.com/yourusername/notesLook.git
+   git clone https://github.com/amancore/notesLook.git
    cd notesLook
    ```
 
@@ -81,12 +81,6 @@ This ensures timestamps appear in **"Mar 13, 2025, 5:45 PM"** format.
 2. Create a new branch (`git checkout -b feature-branch`).
 3. Make your changes and commit (`git commit -m "Added new feature"`).
 4. Push to your fork and submit a pull request.
-
-## License
-
-This project is licensed under the **MIT License**.
-
----
 
 🚀 **Happy Coding!** 🎉
 
