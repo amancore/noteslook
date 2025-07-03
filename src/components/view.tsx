@@ -18,26 +18,29 @@ interface NoteViewProps {
 
 export default function NoteView({ note, onEdit }: NoteViewProps) {
 	return (
-		<Card className="flex flex-col h-[calc(99vh-99px)] bg-white dark:bg-black dark:text-white">
+		<Card className="flex flex-col h-[calc(99vh-99px)] bg-black text-white border border-white">
 			<CardHeader>
-				<CardTitle>{note.title}</CardTitle>
-				<p className="text-sm text-muted-foreground">
+				<CardTitle className="!text-[1rem] text-white">{note.title}</CardTitle>
+				<p className="text-sm text-white opacity-90">
 					Created: {formateDate(note.createdAt)}
 				</p>
 				{note.updatedAt && note.updatedAt !== note.createdAt && (
-					<p className="text-xs text-muted-foreground">
+					<p className="text-xs text-white opacity-90">
 						Updated: {formateDate(note.updatedAt)}
 					</p>
 				)}
 			</CardHeader>
-				<div className="border-1 border-white"></div>
+			<div className="border border-white"></div>
 			<CardContent className="flex-1 min-h-0">
 				<ScrollArea className="h-full">
-					<p className="text whitespace-pre-wrap">{note.content}</p>
+					<p className="whitespace-pre-wrap text-white">{note.content}</p>
 				</ScrollArea>
 			</CardContent>
 			<CardFooter className="flex justify-end">
-				<Button variant="outline" onClick={onEdit}>
+				<Button
+					variant="outline"
+					onClick={onEdit}
+					className="border-white text-white bg-black hover:bg-white hover:text-black">
 					Edit Note
 				</Button>
 			</CardFooter>

@@ -1,23 +1,14 @@
 @import "tailwindcss";
+
 html {
 	scroll-behavior: smooth;
 }
-:root {
-  --background: #fff;
-  --foreground: #000;
-  --accent: #f3f4f6;
-  --accent-foreground: #111;
-  --card: #fff;
-  --muted-foreground: #6b7280;
-}
 
-.dark {
-  --background: #18181b;
-  --foreground: #fafafa;
-  --accent: #27272a;
-  --accent-foreground: #fafafa;
-  --card: #18181b;
-  --muted-foreground: #a1a1aa;
+:root {
+	--background: #000;
+	--foreground: #fff;
+	--muted-foreground: #fff;
+	--font-poppins: 'Poppins', sans-serif;
 }
 
 body {
@@ -25,17 +16,6 @@ body {
 	color: var(--foreground);
 	min-height: 100vh;
 	font-family: var(--font-poppins), sans-serif;
-}
-:root {
-	--background: #fff;
-	--foreground: #111;
-	--font-poppins: 'Poppins', sans-serif;
-	--font-roboto-mono: 'Roboto Mono', monospace;
-}
-
-.dark {
-	--background: #000;
-	--foreground: #fafafa;
 }
 
 [contenteditable]::-webkit-scrollbar {
