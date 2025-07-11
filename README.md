@@ -1,22 +1,36 @@
-# Notes Look
+# 📝 NotesLook
 
-A simple note-taking application built with **React** and **TypeScript**. This app allows users to create, edit, delete, and view notes, with automatic local storage persistence.
+A lightweight, elegant, and responsive **note-taking app** built with **React**, **TypeScript**, and **ShadCN UI**. NotesLook helps you capture your thoughts instantly, persistently, and securely — all stored locally in your browser.
 
-## Features
+---
 
-- 📌 **Create, Edit, and Delete Notes**
-- 📜 **Auto-save notes to Local Storage**
-- 🎨 **Responsive UI with modern styling**
-- 🔍 **Scrollable list of notes**
-- 🕒 **Timestamp display with AM/PM format**
+## ✨ Features
 
-## Technologies Used
+- ✅ **Create, Edit, and Delete Notes**
+- 💾 **Auto-save to Local Storage**
+- 🧠 **Cursor and Scroll Memory** — remembers where you left off
+- 📜 **Live Markdown Support** (with syntax highlighting via `remark-prism`)
+- 🕐 **Readable Time Format** — AM/PM with month/day/year
+- 🎨 **Modern UI with Dark Mode**
+- 🔍 **Smart Sidebar Navigation**
+- ⚡️ **Instant performance** — No backend required
 
-- **React** - UI framework
-- **TypeScript** - Type safety and maintainability
-- **ShadCN/UI** - Styled UI components
-- **Lucide Icons** - Modern icons
-- **Local Storage API** - Data persistence
+---
+
+## 🛠 Tech Stack
+
+| Tech             | Purpose                          |
+|------------------|----------------------------------|
+| **React**        | UI Library                       |
+| **TypeScript**   | Static typing & scalability      |
+| **ShadCN/UI**    | Headless + styled UI components  |
+| **Lucide Icons** | Icon system                      |
+| **LocalStorage** | Client-side persistence          |
+| **Next.js**      | Routing & Build system           |
+| **Tailwind CSS** | Utility-first styling            |
+
+---
+
 
 ## Installation & Setup
 
@@ -41,26 +55,37 @@ A simple note-taking application built with **React** and **TypeScript**. This a
 ## File Structure
 
 ```
-📂 src
+📦 /src
  ┣ 📂 components
- ┃ ┣ 📜 NoteView.tsx         # Displays a selected note
- ┃ ┣ 📜 NoteEditor.tsx       # Note editing interface
- ┃ ┣ 📜 SideBar.tsx          # Sidebar with note list
- ┃ ┣ 📜 EmptyState.tsx       # Placeholder for empty notes
+ ┃ ┣ 📜 NoteView.tsx        // Displays selected note
+ ┃ ┣ 📜 NoteEditor.tsx      // Editor with cursor/scroll persistence
+ ┃ ┣ 📜 SideBar.tsx         // Sidebar list of notes
+ ┃ ┣ 📜 EmptyState.tsx      // No notes placeholder
+ ┃ ┗ 📜 ui/                 // ShadCN UI elements
  ┣ 📂 lib
- ┃ ┣ 📜 storage.ts           # Handles local storage operations
- ┃ ┣ 📜 types.ts             # Type definitions for notes
- ┣ 📜 App.tsx                # Main application entry
- ┣ 📜 index.tsx              # React root render
+ ┃ ┣ 📜 storage.ts          // LocalStorage helpers
+ ┃ ┗ 📜 types.ts            // Note type definitions
+ ┣ 📜 App.tsx               // Main layout
+ ┗ 📜 index.tsx             // App entry point
 ```
 
-## Local Storage
+## 💾 Local Storage Behavior
 
-Notes are stored in the browser's local storage under the key **"notes"**. This ensures persistence across page reloads.
+Notes are persisted under the key: **`notes`**
 
-## Formatting Date & Time
+Cursor and scroll positions are saved under:
 
-The date and time of a note's creation are formatted using:
+- **`note_cursor_positions`**
+- **`note_scroll_positions`**
+
+> This allows you to continue exactly where you left off, even after a page reload or tab switch.
+
+---
+
+## 🕓 Date Formatting
+
+All timestamps use U.S. readable format (e.g. `Mar 13, 2025, 5:45 PM`):
+
 ```ts
 export function formatDate(timestamp: number): string {
 	return new Date(timestamp).toLocaleString("en-US", {
@@ -74,6 +99,14 @@ export function formatDate(timestamp: number): string {
 }
 ```
 This ensures timestamps appear in **"Mar 13, 2025, 5:45 PM"** format.
+
+## 📌 Known Improvements To Add
+
+- 🔍 **Search/filter notes** in sidebar  
+- 🏷️ **Note tags or categories**  
+- 🖥️ **Optional Markdown preview**  
+- 📤 **Export notes** to `.txt` or `.md`
+
 
 ## Contributing
 
