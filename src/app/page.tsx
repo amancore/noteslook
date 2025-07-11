@@ -1,94 +1,86 @@
-'use client'
+"use client";
+import { useState, useEffect } from "react";
+import { Note } from "@/lib/types";
 import SideBar from "@/components/sidebar";
 import Header from "@/components/header";
-import { useState,useEffect } from "react";
-import { Note } from "@/lib/types";
-import NoteView from "@/components/view";
-import NoteEditor from "@/components/editor";
 import EmptyState from "@/components/empty-state";
+import NoteEditor from "@/components/editor"; // Only editor now
 import { loadNotes, saveNotes } from "@/lib/storage";
+
 export default function Home() {
 	const [notes, setNotes] = useState<Note[]>([]);
-	const [activeNote,setActiveNote] = useState<Note | null>(null);
-	const [isEditing, setIsEditing] = useState(true);
-	const sortedNotes = [...notes].sort((a, b) => b.updatedAt - a.updatedAt);
+	const [activeNote, setActiveNote] = useState<Note | null>(null);
+
 	useEffect(() => {
 		const loadedNotes = loadNotes();
 		const sorted = [...loadedNotes].sort((a, b) => b.updatedAt - a.updatedAt);
 		setNotes(sorted);
 		if (sorted.length > 0) {
 			setActiveNote(sorted[0]);
-			setIsEditing(false);
 		}
 	}, []);
 
 	useEffect(() => {
 		saveNotes(notes);
 	}, [notes]);
-	
+
 	const createNewNote = () => {
 		const newNote: Note = {
-			id:Date.now().toString(),
-			title: 'New Note',
-			content : "",
+			id: Date.now().toString(),
+			title: "New Note",
+			content: "",
 			createdAt: Date.now(),
-			updatedAt: Date.now()
-		}
-		
+			updatedAt: Date.now(),
+		};
 		setNotes([newNote, ...notes]);
 		setActiveNote(newNote);
-		setIsEditing(true);
 	};
+
 	const selectNote = (note: Note) => {
 		setActiveNote(note);
-		setIsEditing(false);
-	}
-	const cancelEdit = () => {
-		setIsEditing(false);
-	}
-	const saveNote = (updatedNote: Note) => {
-		setNotes(
-			notes.map((note) =>
-				note.id === updatedNote.id
-					? { ...updatedNote, updatedAt: Date.now() }
-					: note
-			)
-		);
-		setActiveNote({ ...updatedNote, updatedAt: Date.now() });
-		setIsEditing(false);
 	};
-	
-	const deleteNote = (id :string ) => {
+
+	const saveNote = (updatedNote: Note) => {
+		const updated = {
+			...updatedNote,
+			updatedAt: Date.now(),
+		};
+		setNotes((prevNotes) =>
+			prevNotes.map((note) => (note.id === updated.id ? updated : note))
+		);
+		setActiveNote(updated);
+	};
+
+	const deleteNote = (id: string) => {
 		setNotes(notes.filter((note) => note.id !== id));
-		if(activeNote && activeNote.id === id){
+		if (activeNote && activeNote.id === id) {
 			setActiveNote(null);
-			setIsEditing(false);
 		}
-	}
+	};
+
 	const renderNoteContent = () => {
 		if (!activeNote && notes.length === 0) {
 			return (
-				<EmptyState message="Create your first note to get started"
-				 buttonText="New Note"
-				 onButtonClick={createNewNote}
+				<EmptyState
+					message="Create your first note to get started"
+					buttonText="New Note"
+					onButtonClick={createNewNote}
 				/>
-			)
-		}
-		if(activeNote && isEditing){
-			return <NoteEditor note={activeNote} onSave={saveNote} onCancel={cancelEdit}/>
+			);
 		}
 		if (activeNote) {
-			return <NoteView note={activeNote} onEdit={()=>{setIsEditing(true)}}/>;
+			return <NoteEditor note={activeNote} onSave={saveNote} />;
 		}
 		return null;
-	}
+	};
+
 	return (
 		<div className="flex flex-col min-h-screen">
 			<Header onNewNote={createNewNote} />
 			<main className="container mx-auto py-4 grid grid-col-2 md:grid-cols-3 gap-6 flex-1">
 				<div className="md:col-span-1">
 					<SideBar
-						notes={sortedNotes}
+						notes={[...notes].sort((a, b) => b.updatedAt - a.updatedAt)}
 						onSelectNote={selectNote}
 						createNewNote={createNewNote}
 						onDeleteNote={deleteNote}
@@ -100,3 +92,4 @@ export default function Home() {
 		</div>
 	);
 }
+  
