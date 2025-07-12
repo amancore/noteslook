@@ -156,7 +156,7 @@ export default function NoteEditor({ note, onSave }: NoteEditorProps) {
 	}, [title, content]);
 
 	return (
-		<Card className="flex flex-col overflow-y-hidden h-[calc(99vh-99px)] bg-black text-white border border-white">
+		<Card className="flex flex-col overflow-y-hidden h-[calc(99vh-99px)] border-white/30 text-white bg-black/40transition-all shadow">
 			<CardHeader>
 				<Input
 					ref={titleRef}
@@ -176,7 +176,7 @@ export default function NoteEditor({ note, onSave }: NoteEditorProps) {
 				)}
 			</CardHeader>
 
-			<div className="border border-white" />
+			<div className="border border-white/40" />
 
 			<CardContent className="flex-1 min-h-0 overflow-hidden">
 				<Textarea

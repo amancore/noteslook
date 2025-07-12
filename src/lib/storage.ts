@@ -1,11 +1,12 @@
 import { Note } from "./types";
+// Dynamic key based on user
+const getStorageKey = (uid: string) => `notes_${uid}`;
 
-const STORAGE_KEY = "notes";
-
-export function loadNotes(): Note[] {
+// Load notes for specific user
+export function loadNotes(uid: string): Note[] {
 	if (typeof window === "undefined") return [];
 
-	const savedNotes = localStorage.getItem(STORAGE_KEY);
+	const savedNotes = localStorage.getItem(getStorageKey(uid));
 	if (savedNotes) {
 		try {
 			return JSON.parse(savedNotes);
@@ -17,11 +18,13 @@ export function loadNotes(): Note[] {
 	return [];
 }
 
-export function saveNotes(notes: Note[]): void {
+// Save notes for specific user
+export function saveNotes(uid: string, notes: Note[]): void {
 	if (typeof window === "undefined") return;
-	localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
+	localStorage.setItem(getStorageKey(uid), JSON.stringify(notes));
 }
 
+// Date formatting remains unchanged
 export function formateDate(timestamp: number): string {
 	return new Date(timestamp).toLocaleString("en-US", {
 		year: "numeric",
@@ -29,6 +32,6 @@ export function formateDate(timestamp: number): string {
 		day: "numeric",
 		hour: "numeric",
 		minute: "2-digit",
-		hour12: true, 
+		hour12: true,
 	});
 }
